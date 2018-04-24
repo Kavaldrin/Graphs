@@ -144,6 +144,7 @@ void generateGraphFullRandom(int k, int w)
 	
 	vector<vector<int>> vertexes;
 	vector <int> temp;
+
 	map<int,int> neigh;
 	vector<int> min;
 	vector<int> max;
@@ -160,6 +161,7 @@ void generateGraphFullRandom(int k, int w)
 
 		//bozia tego nie widzi
 		vertexes.clear();
+
 		for (int i = 0; i < w; ++i) {
 			vertexes.push_back(temp);
 			neigh[i] = 0;
@@ -170,7 +172,6 @@ void generateGraphFullRandom(int k, int w)
 
 		while (leftVertexes(neigh, k)) {
 			setMins(neigh, min);
-
 			a = rand() % min.size();
 			b = rand() % min.size();
 			while (a == b && min.size() > 1)
@@ -199,30 +200,41 @@ void generateGraphFullRandom(int k, int w)
 					}
 					else {
 						while (areConnected(vertexes, a, b)) {
-							b = rand() % w;
+							b = rand() % w;	
 							--valid;
+
+							if (!valid)
+								break;
+							
+
 							while (!((neigh[b] < k) && a != b)) {
 								b = rand() % w;
 							}
-							if (!valid)
-								break;
+							
 
 						}
-						connect(vertexes, a, b);
-						++neigh[a];
-						++neigh[b];
-
+						if (!areConnected(vertexes, a, b)) {
+							connect(vertexes, a, b);
+							++neigh[a];
+							++neigh[b];
+						}
+						
 					}
 				}
 
 			}
+			if (!valid)
+				break;
 		}
-		if (!valid)
+		
+		if (valid)
 			generated = true;
+
 		if (!leftVertexes(neigh, k))
 			generated = true;
 		//////
-
+//#define DEBUG
+#ifdef DEBUG
 		cout << endl;
 		for (auto &vertex : vertexes) {
 			for (auto &a : vertex)
@@ -232,6 +244,7 @@ void generateGraphFullRandom(int k, int w)
 		cout << endl;
 
 		///////
+#endif 
 	}
 	
 
@@ -240,14 +253,12 @@ void generateGraphFullRandom(int k, int w)
 
 //#define DEBUG
 
-#ifdef DEBUG
 	for (auto &vertex : vertexes) {
 		for (auto &a : vertex)
 			std::cout << a << " ";
 		std::cout << std::endl;
 	}
-	system("pause");
-#endif 
+	//system("pause");
 
 
 	try {

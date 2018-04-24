@@ -58,11 +58,12 @@ int main()
 			}
 
 			///
+#ifdef DEBUG
 			for (auto &p : eulerEdges) {
 				std::cout << p.first << " " << p.second << std::endl;
 			}
 			system("pause");
-
+#endif
 			///
 		}
 		else {
@@ -71,11 +72,12 @@ int main()
 				hamiltonVertexes.push_back(v-1);
 			}
 			///
+#ifdef DEBUG
 			for (auto &p : hamiltonVertexes) {
 				std::cout << p << " ";
 			}
 			system("pause");
-
+#endif 
 			///
 		}
 		file >> numVertex;

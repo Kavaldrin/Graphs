@@ -1,6 +1,6 @@
 #include "Fun.h"
 
-int const ATTEMPTS = 2000000;
+int const ATTEMPTS = 1000000;
 
 void generateKGraphConnectivity(int k,int w)
 {
@@ -53,7 +53,7 @@ void generateKGraphConnectivity(int k,int w)
 		}
 	}
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 	std::cout << "\nPrzed randomizacja\n";
@@ -68,6 +68,12 @@ void generateKGraphConnectivity(int k,int w)
 	
 	randomizeGraph(vertexes);
 
+	for (auto &vertex : vertexes) {
+		for (auto &a : vertex)
+			std::cout << a << " ";
+		std::cout << std::endl;
+	}
+
 	try {
 		saveToFile(vertexes);
 	}
@@ -75,14 +81,9 @@ void generateKGraphConnectivity(int k,int w)
 		cout << str;
 	}
 
-#ifdef DEBUG
-	std::cout << "\n Po randomizacji\n";
-	for (auto &vertex : vertexes) {
-		for (auto &a : vertex)
-			std::cout << a << " ";
-		std::cout << std::endl;
-	}
-#endif 
+
+	
+
 
 
 }
@@ -117,41 +118,131 @@ void randomizeGraph(std::vector<std::vector<int>> &vertexes)
 		--attempts;
 	}
 }
+
+void setMins(std::map<int, int> & degrees, std::vector<int> &minsIndex)
+{
+	minsIndex.clear();
+	int curr_min = INT_MAX;
+	for (auto &el : degrees) {
+		if (curr_min > el.second) {
+			curr_min = el.second;
+			minsIndex.clear();
+			minsIndex.push_back(el.first);
+		}
+		else if (curr_min == el.second)
+			minsIndex.push_back(el.first);
+	}
+
+}
+
+
 void generateGraphFullRandom(int k, int w)
 {
-	//dla malych grafow, ni chuja zeby sie to policzylo w optymalnym czasie, ale za to jest full random
 	using namespace std;
 	srand(time(NULL));
 
+	
 	vector<vector<int>> vertexes;
 	vector <int> temp;
 	map<int,int> neigh;
-	
+	vector<int> min;
+	vector<int> max;
+
+
+	//boze zmiluj sie nad tym guwnianym kodem = D
+	////
+	int valid;
+	bool generated = false;
+	////
 
 	for (int i = 0; i < w; ++i) {
 		vertexes.push_back(temp);
 		neigh[i] = 0;
 	}
 	int a, b;
-	
-	while (leftVertexes(neigh,k)) {
-		a = rand() % w;
-		while (!(neigh[a] < k))
-			a = rand() % w;
-		b = rand() % w;
-		while (!(neigh[b] < k && b!=a))
-			b = rand() % w;
-		
+	while(!generated){
 
-
-		if (!areConnected(vertexes, a, b)) {
-				connect(vertexes, a, b);
-				++neigh[a];
-				++neigh[b];
+		//bozia tego nie widzi
+		vertexes.clear();
+		for (int i = 0; i < w; ++i) {
+			vertexes.push_back(temp);
+			neigh[i] = 0;
 		}
-	}
+		valid = 100;
+		//
 
-#define DEBUG
+
+		while (leftVertexes(neigh, k)) {
+			setMins(neigh, min);
+
+			a = rand() % min.size();
+			b = rand() % min.size();
+			while (a == b && min.size() > 1)
+				b = rand() % min.size();
+
+			if (min.size() == 1) {
+				a = min[a];
+				b = rand() % w;
+				while (!(neigh[b] < k && neigh[b] == neigh[a] + 1))
+					b = rand() % w;
+
+				if (!areConnected(vertexes, a, b)) {
+					connect(vertexes, a, b);
+					++neigh[a];
+					++neigh[b];
+				}
+			}
+			else {
+				if (a != b) {
+					a = min[a];
+					b = min[b];
+					if (!areConnected(vertexes, a, b)) {
+						connect(vertexes, a, b);
+						++neigh[a];
+						++neigh[b];
+					}
+					else {
+						while (areConnected(vertexes, a, b)) {
+							b = rand() % w;
+							--valid;
+							while (!((neigh[b] < k) && a != b)) {
+								b = rand() % w;
+							}
+							if (!valid)
+								break;
+
+						}
+						connect(vertexes, a, b);
+						++neigh[a];
+						++neigh[b];
+
+					}
+				}
+
+			}
+		}
+		if (!valid)
+			generated = true;
+		if (!leftVertexes(neigh, k))
+			generated = true;
+		//////
+
+		cout << endl;
+		for (auto &vertex : vertexes) {
+			for (auto &a : vertex)
+				std::cout << a << " ";
+			std::cout << std::endl;
+		}
+		cout << endl;
+
+		///////
+	}
+	
+
+
+
+
+//#define DEBUG
 
 #ifdef DEBUG
 	for (auto &vertex : vertexes) {
@@ -159,7 +250,9 @@ void generateGraphFullRandom(int k, int w)
 			std::cout << a << " ";
 		std::cout << std::endl;
 	}
+	system("pause");
 #endif 
+
 
 	try {
 		saveToFile(vertexes);
@@ -167,6 +260,16 @@ void generateGraphFullRandom(int k, int w)
 	catch (std::string str) {
 		cout << str;
 	}
+	
+
+
+
+
+	////////////////////////////////
+	//second try
+	
+
+
 
 }
 

@@ -52,7 +52,7 @@ void Menu::start()
 		}
 	}
 	
-	cout << "Forma generowania, (1) szybka slabo-losowy, (2) mozliwie nieskonczony czas - calkowicie losowy\n";
+	cout << "Forma generowania, (1) szybka slabo-losowy \n(2) superszybka i losowa metoda 100legit\n";
 	cin >> input;
 	while (true) {
 		if (isdigit(input[0])) {

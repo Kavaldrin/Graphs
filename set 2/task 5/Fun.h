@@ -16,3 +16,5 @@ void connect(std::vector<std::vector<int>> &vertexes, int v1, int v2);
 void disconnect(std::vector<std::vector<int>> &vertexes, int v1, int v2);
 bool areConnected(std::vector<std::vector<int>> &vertexes, int v1, int v2);
 void saveToFile(std::vector<std::vector<int>> &vertexes);
+void setMins(std::map<int, int> & degrees, std::vector<int> &minsIndex);
+

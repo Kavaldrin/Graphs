@@ -155,10 +155,6 @@ void generateGraphFullRandom(int k, int w)
 	bool generated = false;
 	////
 
-	for (int i = 0; i < w; ++i) {
-		vertexes.push_back(temp);
-		neigh[i] = 0;
-	}
 	int a, b;
 	while(!generated){
 

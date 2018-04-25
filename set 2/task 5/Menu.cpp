@@ -52,27 +52,5 @@ void Menu::start()
 		}
 	}
 	
-	cout << "Forma generowania, (1) szybka slabo-losowy \n(2) superszybka i losowa metoda 100legit\n";
-	cin >> input;
-	while (true) {
-		if (isdigit(input[0])) {
-			if (!(stoi(input) == 1 || stoi(input) == 2))
-				cin >> input;
-			else {
-				m_choice = stoi(input);
-				break;
-			}
-		}
-	}
 }
-void Menu::generateGraph()
-{
-	switch (m_choice) {
-	case 1:
-		generateKGraphConnectivity(m_k, m_v);
-		break;
-	case 2:
-		generateGraphFullRandom(m_k, m_v);
-		break;
-	}
-}
+

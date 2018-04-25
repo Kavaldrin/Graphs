@@ -11,7 +11,6 @@ public:
 	Menu(){}
 	~Menu(){}
 	void start();
-	void generateGraph();
 	int getK() { return m_k; }
 	int getV() { return m_v; }
 	int getChoice(){ return m_choice; }

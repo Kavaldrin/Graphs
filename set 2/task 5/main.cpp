@@ -21,7 +21,7 @@ int main()
 
 	Menu menu;
 	menu.start();
-	menu.generateGraph();
+	generateGraphFullRandom(menu.getK(), menu.getV());
 
 	system("pause");
 	return 0;

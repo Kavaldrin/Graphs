@@ -1,4 +1,3 @@
-#pragma once
 
 #include "Fun.h"
 
@@ -140,7 +139,7 @@ void randomizeGraph(std::vector<std::pair<int, int>> &pairs)
 
 
 	srand(time(NULL));
-	int trials = 1000;
+	int trials = 500000;
 	int a, b, c, d, i;
 	//ab i cd na parê ad i cb.
 	while (trials) {

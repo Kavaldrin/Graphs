@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item>
+         <widget class="QWidget" name="drawingwidget" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <widget class="QWidget" name="menuGraphwidget" native="true">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>231</width>
+             <height>201</height>
+            </rect>
+           </property>
+           <widget class="QPushButton" name="generateinMenubutton">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>90</y>
+              <width>75</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Generate!</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="cancelinMenubutton">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>90</y>
+              <width>75</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="errorlabel">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>130</y>
+              <width>201</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="vertexText">
+            <property name="geometry">
+             <rect>
+              <x>110</x>
+              <y>10</y>
+              <width>111</width>
+              <height>31</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>10</y>
+              <width>101</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Number of Vertexes</string>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="probabilityText">
+            <property name="geometry">
+             <rect>
+              <x>110</x>
+              <y>50</y>
+              <width>111</width>
+              <height>31</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_2">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>50</y>
+              <width>101</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Probability [0,1]</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="bellmanWidget" native="true">
+           <property name="geometry">
+            <rect>
+             <x>259</x>
+             <y>0</y>
+             <width>231</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <widget class="QTextEdit" name="bellmantext">
+            <property name="geometry">
+             <rect>
+              <x>130</x>
+              <y>10</y>
+              <width>81</width>
+              <height>31</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_3">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>10</y>
+              <width>101</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Number of Vertexes</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="inBellmanButton">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>50</y>
+              <width>101</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Run Bellman-Ford</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="inBellmanShowButton">
+            <property name="geometry">
+             <rect>
+              <x>120</x>
+              <y>50</y>
+              <width>101</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Close Window</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QPushButton" name="generateGraphButton">
+            <property name="text">
+             <string>Generate directed graph </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="drawGraphbutton">
+            <property name="text">
+             <string>Display Graph</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="drawRepresentationsButton">
+            <property name="text">
+             <string>Show Graph Representations</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="KosarajButton">
+            <property name="text">
+             <string>Search for strongly connected component</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="generateStrongbutton">
+            <property name="text">
+             <string>Generate strong connected digraph</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="bellmanFordButton">
+            <property name="text">
+             <string>Search for shortest paths (Bellman-Ford)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="Johnsonbutton">
+            <property name="text">
+             <string>Johnson</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QWidget" name="rightwidget" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <widget class="QPushButton" name="AdjacencyButton">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>10</y>
+                 <width>111</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Adjacency Matrix</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="IncidenceButton">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>40</y>
+                 <width>111</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Incidence Matrix</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="ListButton">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>70</y>
+                 <width>111</width>
+                 <height>23</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Adjacency List</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="modeLabel">
+              <property name="text">
+               <string>Current Mode: None</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
